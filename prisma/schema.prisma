@@ -13,3 +13,48 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id            Int     @id @default(autoincrement())
+  username      String  @unique
+  email         String  @unique
+  passwordHash  String  @map("password_hash")
+  role          String
+  bookings      Booking[]
+  @@map("USERS")
+}
+
+model Room {
+  id            Int     @id @default(autoincrement())
+  name          String
+  price         Float
+  capacity      Int
+  bookings      Booking[]
+  services      Service[]
+  @@map("ROOMS")
+}
+
+model Service {
+  id            Int   @id @default(autoincrement())
+  name          String
+  description   String
+  rooms         Room[]
+  @@map("SERVICES")
+}
+
+model Booking {
+  id            Int @id @default(autoincrement())
+  user_id       Int
+  room_id       Int
+  check_in      DateTime
+  check_out     DateTime
+  total_price   Float
+  status        String
+
+  user User @relation(fields: [user_id], references: [id])
+  room Room @relation(fields: [room_id], references: [id])
+
+  @@index([user_id])
+  @@index([room_id])
+  @@map("BOOKINGS")
+}
