@@ -1,0 +1,23 @@
+openapi: '3.1.0'
+info:
+  title: Hotel Mangement System
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+  - url: https://hotel-management-api-project.onrender.com
+    description: Render deployment
+tags:
+  - name: Users
+    description: User-related endpoints
+paths:
+  /users:
+    $ref: ./paths/users.yaml
+  /users/{id}:
+    $ref: ./paths/userID.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

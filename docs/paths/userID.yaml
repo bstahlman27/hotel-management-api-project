@@ -1,0 +1,97 @@
+get:
+  summary: Get one user by their id
+  tags:
+    - Users
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Uses this ID to find the user with the same id
+      schema:
+        type: integer
+        example: 1
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/User.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedError.yaml
+    '403':
+      $ref: ../components/responses/ForbiddenError.yaml
+    '404':
+      $ref: ../components/responses/NotFoundError.yaml
+
+put:
+  summary: Update a user by their id
+  tags:
+    - Users
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID of the user to update
+      schema:
+        type: integer
+        example: 1
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          description: Fields the user can update. All fields are optional.
+          properties:
+            username:
+              type: string
+              example: "updatedUsername"
+            email:
+              type: string
+              format: email
+              example: "newemail@example.com"
+            password:
+              type: string
+              format: password
+              example: "updatedPassw0rd"
+          required: []
+  responses:
+    '200':
+      description: Updated user
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/User.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedError.yaml
+    '403':
+      $ref: ../components/responses/ForbiddenError.yaml
+    '404':
+      $ref: ../components/responses/NotFoundError.yaml
+
+delete:
+  summary: Delete a user by their id
+  tags:
+    - Users
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID of the user to delete
+      schema:
+        type: integer
+        example: 1
+  responses:
+    '204':
+      description: User deleted successfully
+    '401':
+      $ref: ../components/responses/UnauthorizedError.yaml
+    '403':
+      $ref: ../components/responses/ForbiddenError.yaml
+    '404':
+      $ref: ../components/responses/NotFoundError.yaml

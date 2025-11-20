@@ -32,7 +32,7 @@ export async function createUserHandler(req, res, next){
 export async function updateUserHandler(req, res, next){
     try {
         const id = Number(req.params.id);
-        if (!req.user || req.user.id !== id){
+        if (req.user && req.user.id !== id){
             return res.status(403).json({ message: 'Forbidden' });
         }
         const { username, email, password } = req.body;
@@ -47,7 +47,7 @@ export async function updateUserHandler(req, res, next){
 export async function deleteUserHandler(req, res, next){
     try {
         const id = Number(req.params.id);
-        if (!req.user || req.user.id !== id){
+        if (req.user && req.user.id !== id){
             return res.status(403).json({ message: 'Forbidden' });
         }
         await deleteUserAccount(id);

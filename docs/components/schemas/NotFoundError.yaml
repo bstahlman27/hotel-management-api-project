@@ -1,0 +1,8 @@
+type: object
+properties:
+  error:
+    type: string
+    example: Not found
+  message:
+    type: string
+    example: No user with that ID
