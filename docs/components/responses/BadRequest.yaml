@@ -1,0 +1,5 @@
+description: Bad request – validation failed
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ValidationError.yaml

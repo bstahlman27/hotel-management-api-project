@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    type: integer
+    readOnly: true
+    example: 1
+  username:
+    type: string
+    example: "billy123"
+  email:
+    type: string
+    format: email
+    example: "billy123@bill.net"
+  password:
+    type: string
+    format: password
+    example: "bill123456"

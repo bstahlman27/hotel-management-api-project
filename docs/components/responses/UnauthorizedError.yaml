@@ -1,0 +1,9 @@
+description: Authentication required or invalid token
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Not authenticated"

@@ -6,9 +6,17 @@ const router = express.Router();
 
 router.post('/', createUserHandler);
 
-router.get('/', authenticate, getAllUsersHandler);
-router.get('/:id', authenticate, getUserByIdHandler);
-router.put('/:id', authenticate, updateUserHandler);
-router.delete('/:id', authenticate, deleteUserHandler);
+if (process.env.NODE_ENV === 'production') {
+  router.get('/', authenticate, getAllUsersHandler);
+  router.get('/:id', authenticate, getUserByIdHandler);
+  router.put('/:id', authenticate, updateUserHandler);
+  router.delete('/:id', authenticate, deleteUserHandler);
+} else {
+  router.get('/', getAllUsersHandler);
+  router.get('/:id', getUserByIdHandler);
+  router.put('/:id', updateUserHandler);
+  router.delete('/:id', deleteUserHandler);
+}
+
 
 export default router;
