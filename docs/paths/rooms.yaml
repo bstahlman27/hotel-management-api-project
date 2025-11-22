@@ -1,0 +1,36 @@
+get:
+  tags:
+    - Rooms
+  summary: List all rooms
+  responses:
+    '200':
+      description: A list of rooms
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../components/schemas/Room.yaml'
+post:
+  tags:
+    - Rooms
+  summary: Create a new room
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/Room.yaml'
+  responses:
+    '201':
+      description: Room created
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Room.yaml'
+    '401':
+      $ref: '../components/responses/UnauthorizedError.yaml'
+    '403':
+      $ref: '../components/responses/ForbiddenError.yaml'

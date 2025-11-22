@@ -15,6 +15,10 @@ paths:
     $ref: ./paths/users.yaml
   /users/{id}:
     $ref: ./paths/userID.yaml
+  /rooms:
+    $ref: ./paths/rooms.yaml
+  /rooms/{id}:
+    $ref: ./paths/roomID.yaml
 components:
   securitySchemes:
     bearerAuth:
