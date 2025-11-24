@@ -1,0 +1,74 @@
+get:
+  tags:
+    - Services
+  summary: Get a service by ID
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+      description: Numeric ID of the service to get
+  responses:
+    '200':
+      description: Service details
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Service.yaml'
+    '404':
+      $ref: '../components/responses/NotFoundError.yaml'
+put:
+  tags:
+    - Services
+  summary: Update a service
+  security:
+    - bearerAuth: []
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+      description: Numeric ID of the service to update
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/Service.yaml'
+  responses:
+    '200':
+      description: Service updated
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/Service.yaml'
+    '401':
+      $ref: '../components/responses/UnauthorizedError.yaml'
+    '403':
+      $ref: '../components/responses/ForbiddenError.yaml'
+    '404':
+      $ref: '../components/responses/NotFoundError.yaml'
+delete:
+  tags:
+    - Services
+  summary: Delete a service
+  security:
+    - bearerAuth: []
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+      description: Numeric ID of the service to delete
+  responses:
+    '204':
+      description: Service deleted
+    '401':
+      $ref: '../components/responses/UnauthorizedError.yaml'
+    '403':
+      $ref: '../components/responses/ForbiddenError.yaml'
+    '404':
+      $ref: '../components/responses/NotFoundError.yaml'
