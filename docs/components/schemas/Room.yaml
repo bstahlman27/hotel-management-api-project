@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    type: integer
+    readOnly: true
+    example: 1
+  name:
+    type: string
+    example: "Deluxe Suite"
+  price:
+    type: number
+    format: float
+    example: 150.00
+  capacity:
+    type: integer
+    example: 2
