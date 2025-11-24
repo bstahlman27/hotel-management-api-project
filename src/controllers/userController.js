@@ -30,29 +30,22 @@ export async function createUserHandler(req, res, next){
 }
 
 export async function updateUserHandler(req, res, next){
-    try {
-        const id = Number(req.params.id);
-        if (req.user && req.user.id !== id){
-            return res.status(403).json({ message: 'Forbidden' });
-        }
-        const { username, email, password } = req.body;
-        const updated = await updateUserAccount(id, { username, email, password });
-        res.status(200).json(updated);
-    } catch (err) {
-        next(err);
-    }
+  try {
+    const id = Number(req.params.id);
+    const { username, email, password } = req.body;
+    const updated = await updateUserAccount(id, { username, email, password });
+    res.status(200).json(updated);
+  } catch (err) {
+    next(err);
+  }
 }
 
-
 export async function deleteUserHandler(req, res, next){
-    try {
-        const id = Number(req.params.id);
-        if (req.user && req.user.id !== id){
-            return res.status(403).json({ message: 'Forbidden' });
-        }
-        await deleteUserAccount(id);
-        res.status(204).send();
-    } catch (err) {
-        next(err);
-    }
+  try {
+    const id = Number(req.params.id);
+    await deleteUserAccount(id);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
 }
