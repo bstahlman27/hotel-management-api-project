@@ -15,11 +15,11 @@ post:
             email:
               type: string
               format: email
-              example: tester1@testers.com
+              example: ben@ben.ben
             password:
               type: string
               format: password
-              example: test123
+              example: ben
         examples:
           adminLogin:
             summary: Admin login
