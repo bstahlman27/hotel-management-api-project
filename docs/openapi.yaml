@@ -1,6 +1,6 @@
 openapi: '3.1.0'
 info:
-  title: Hotel Mangement System
+  title: Hotel Management System
   version: 1.0.0
 servers:
   - url: http://localhost:3000
@@ -16,6 +16,8 @@ tags:
     description: Room-related endpoints
   - name: Services
     description: Service-related endpoints
+  - name: Bookings
+    description: Booking related endpoints
 paths:
   /auth/login:
     $ref: paths/authentication.yaml
@@ -34,7 +36,7 @@ paths:
   /bookings:
     $ref: ./paths/bookings.yaml
   /bookings/{id}:
-    $ref: ./paths/bookings.yaml
+    $ref: ./paths/bookingsID.yaml
   
 components:
   securitySchemes:
