@@ -31,6 +31,11 @@ paths:
     $ref: ./paths/services.yaml
   /services/{id}:
     $ref: ./paths/serviceID.yaml
+  /bookings:
+    $ref: ./paths/bookings.yaml
+  /bookings/{id}:
+    $ref: ./paths/bookings.yaml
+  
 components:
   securitySchemes:
     bearerAuth:
