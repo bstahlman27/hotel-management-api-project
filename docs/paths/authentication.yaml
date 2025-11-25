@@ -34,8 +34,8 @@ post:
           guestLogin:
             summary: Guest login
             value:
-              email: tester1@testers.com
-              password: test123
+              email: ben@ben.ben
+              password: ben
   responses:
     '200':
       description: Login successful – returns a JWT access token
