@@ -9,7 +9,7 @@ import {
 
 import { authenticate } from '../middleware/auth.js';
 import { authorizeRoles } from '../middleware/authorizeRoles.js';
-import { authorizeOwnershipOrRoles } from '../middleware/authorizeOwnership.js';
+import { authorizeBookingOwnershipOrRoles } from '../middleware/authorizeBookingOwnership.js';
 
 const router = express.Router();
 
