@@ -1,0 +1,14 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: Breakfast
+  description:
+    type: string
+    example: Free continental breakfast from 6am to 11am.
+required:
+  - name
+  - description
