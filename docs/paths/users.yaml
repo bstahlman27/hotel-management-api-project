@@ -2,6 +2,8 @@ get:
   summary: List all Users
   tags:
     - Users
+  security:
+    - bearerAuth: []
   responses:
     '200':
       description: List of Users
