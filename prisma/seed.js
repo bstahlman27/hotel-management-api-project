@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 try {
     await prisma.user.deleteMany();
     await prisma.room.deleteMany();
+    await prisma.service.deleteMany();
 
     const roomsData = [
         { name: 'Standard Room', price: 100.0, capacity: 2 },
@@ -16,6 +17,16 @@ try {
 
     await Promise.all(
         roomsData.map((room) => prisma.room.create({ data: room }))
+    );
+
+    const servicesData = [
+        { name: 'Breakfast', description: 'Free continental breakfast from 6am to 11am.' },
+        { name: 'Pool', description: 'Indoor heated pool open 7am to 10pm.' },
+        { name: 'Room Service', description: 'Hot meals and snacks delivered to your door.' },
+    ];
+
+    await Promise.all(
+        servicesData.map((service) => prisma.service.create({ data: service }))
     );
 
     const usersData = [

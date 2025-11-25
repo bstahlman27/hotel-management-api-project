@@ -10,6 +10,10 @@ servers:
 tags:
   - name: Users
     description: User-related endpoints
+  - name: Rooms
+    description: Room-related endpoints
+  - name: Services
+    description: Service-related endpoints
 paths:
   /users:
     $ref: ./paths/users.yaml
@@ -19,6 +23,10 @@ paths:
     $ref: ./paths/rooms.yaml
   /rooms/{id}:
     $ref: ./paths/roomID.yaml
+  /services:
+    $ref: ./paths/services.yaml
+  /services/{id}:
+    $ref: ./paths/serviceID.yaml
 components:
   securitySchemes:
     bearerAuth:
