@@ -15,11 +15,11 @@ const router = express.Router();
 
 router.get('/', authenticate, authorizeRoles('ADMIN', 'STAFF'), getAllBookingsHandler);
 
-router.get('/:id', authenticate, authorizeOwnershipOrRoles('ADMIN', 'STAFF'), getBookingByIdHandler);
+router.get('/:id', authenticate, authorizeBookingOwnershipOrRoles('ADMIN', 'STAFF'), getBookingByIdHandler);
 
 router.post('/', authenticate, createBookingHandler);
 
-router.put('/:id', authenticate, authorizeOwnershipOrRoles('ADMIN', 'STAFF'), updateBookingHandler);
+router.put('/:id', authenticate, authorizeBookingOwnershipOrRoles('ADMIN', 'STAFF'), updateBookingHandler);
 
 router.delete('/:id', authenticate, authorizeRoles('ADMIN'), deleteBookingHandler);
 

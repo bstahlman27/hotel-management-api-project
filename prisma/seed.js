@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
 
 try {
+    await prisma.booking.deleteMany();
     await prisma.user.deleteMany();
     await prisma.room.deleteMany();
     await prisma.service.deleteMany();
@@ -15,7 +16,7 @@ try {
         { name: 'Presidential Suite', price: 500.0, capacity: 2 },
     ];
 
-    await Promise.all(
+    const rooms = await Promise.all(
         roomsData.map((room) => prisma.room.create({ data: room }))
     );
 
@@ -70,6 +71,37 @@ try {
     const users = await Promise.all(
         usersData.map((user) => prisma.user.create({ data: user })),
     );
+
+    const bookingsData = [
+        {
+            user_id: users[3].id,
+            room_id: rooms[0].id,
+            check_in: new Date("2025-01-10T15:00:00Z"),
+            check_out: new Date("2025-01-12T11:00:00Z"),
+            total_price: 250.00,
+            status: "CONFIRMED",
+        },
+        {
+            user_id: users[4].id,
+            room_id: rooms[1].id,
+            check_in: new Date("2025-02-02T15:00:00Z"),
+            check_out: new Date("2025-02-05T11:00:00Z"),
+            total_price: 480.00,
+            status: "CHECKED_IN",
+        },
+        {
+            user_id: users[5].id,
+            room_id: rooms[0].id,
+            check_in: new Date("2025-03-01T15:00:00Z"),
+            check_out: new Date("2025-03-03T11:00:00Z"),
+            total_price: 180.00,
+            status: "CANCELLED",
+        },
+    ];
+    await Promise.all(
+        bookingsData.map((booking) => prisma.booking.create({ data: booking }))
+    );
+
 } catch (error) {
     console.error('Seed failed:', error);
 } finally {
