@@ -1,0 +1,66 @@
+post:
+  summary: Log in a user
+  tags:
+    - Authentication
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - email
+            - password
+          properties:
+            email:
+              type: string
+              format: email
+              example: tester1@testers.com
+            password:
+              type: string
+              format: password
+              example: test123
+        examples:
+          adminLogin:
+            summary: Admin login
+            value:
+              email: theboss@hotel.com
+              password: admin123
+          staffLogin:
+            summary: Staff login
+            value:
+              email: jimmy@hotel.com
+              password: jimmy123
+          guestLogin:
+            summary: Guest login
+            value:
+              email: tester1@testers.com
+              password: test123
+  responses:
+    '200':
+      description: Login successful – returns a JWT access token
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+                description: JWT to be used in the Authorization header as `Bearer <token>`
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjksImVtYWlsIjoidGhlYm9zc0Bob3RlbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjQwNDE1MzIsImV4cCI6MTc2NDA0MjQzMn0.KhjdnQZxyH83p4jNeA9AQQ8oDbj1BRNwPgRqlKnxrQM
+    '400':
+      description: Bad request (missing fields or invalid body)
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ValidationError.yaml
+    '401':
+      description: Invalid email or password
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Invalid credentials

@@ -8,6 +8,8 @@ servers:
   - url: https://hotel-management-api-project.onrender.com
     description: Render deployment
 tags:
+  - name: Authentication
+    descripion: Login-related endpoints
   - name: Users
     description: User-related endpoints
   - name: Rooms
@@ -15,6 +17,8 @@ tags:
   - name: Services
     description: Service-related endpoints
 paths:
+  /auth/login:
+    $ref: paths/authentication.yaml
   /users:
     $ref: ./paths/users.yaml
   /users/{id}:
